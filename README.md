@@ -1,4 +1,4 @@
-# Lua Forms - Lua Form Handling Library
+# Lua Forms
 
 lua-forms is a Lua library for creating and validating forms, inspired by WTForms. It provides a flexible framework for defining form fields, applying filters, and validating user input.
 
