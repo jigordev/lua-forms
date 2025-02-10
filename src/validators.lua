@@ -25,7 +25,7 @@ end)
 validators.length = validators.validator(function(value, min, max)
     checkargs.check_arg("validators.length", "min", { "number" }, min, true)
     checkargs.check_arg("validators.length", "max", { "number" }, max, true)
-    return not (#value < min or #value > max), "Invalid length"
+    return not (min and #value < min) or (max and #value > max), "Invalid length"
 end)
 
 validators.email = validators.validator(function(value)
