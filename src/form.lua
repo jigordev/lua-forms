@@ -24,9 +24,11 @@ function Form:validate(values)
     self.errors = {}
     for name, field in pairs(self.fields) do
         local value = values[name]
-        local success, result = field:validate(value)
-        if not success then
-            self.errors[name] = result
+        if value then
+            local success, result = field:validate(value)
+            if not success then
+                self.errors[name] = result
+            end
         end
     end
 
