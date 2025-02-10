@@ -28,21 +28,21 @@ local validators = require("lforms.validators")
 local filters = require("lforms.filters")
 
 -- Define a form with fields
-local myForm = lforms.Form({
-    fields.StringField("username", {
+local myForm = lforms.Form:new({
+    fields.StringField:new("username", {
         label = "Username",
         validators = { validators.required(), validators.length(3, 20) },
         filters = { filters.trim }
     }),
-    fields.EmailField("email", {
+    fields.StringField:new("email", {
         label = "Email",
         validators = { validators.required(), validators.email() }
     }),
-    fields.PasswordField("password", {
+    fields.PasswordField:new("password", {
         label = "Password",
-        validators = { validators.required(), validators.length(6) }
+        validators = { validators.required(), validators.length(6, 20) }
     }),
-    fields.SelectField("country", {
+    fields.SelectField:new("country", {
         label = "Country",
         choices = { {"us", "United States"}, {"ca", "Canada"}, {"uk", "United Kingdom"} },
         validators = { validators.required() }
@@ -58,12 +58,12 @@ local form_data = {
 }
 
 -- Validate form data
-if myForm(form_data) then
+if myForm:validate(form_data) then
     print("Form data is valid!")
 else
     print("Form validation errors:")
-    for field, error in pairs(myForm.errors) do
-        print(field .. ": " .. error)
+    for field, err in pairs(myForm.errors) do
+        print(field .. ": " .. err)
     end
 end
 ```
